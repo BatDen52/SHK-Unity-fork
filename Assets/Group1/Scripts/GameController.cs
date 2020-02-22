@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (((EnemyMove[])FindObjectsOfType(typeof(EnemyMove))).Length == 0)
+        if (((EnemyController[])FindObjectsOfType(typeof(EnemyController))).Length == 0)
         {
             End();
             _player.enabled = false;
