@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8724895469496398774}
   - component: {fileID: 8724895469496398769}
-  - component: {fileID: 8724895469496398768}
+  - component: {fileID: 104532040297937120}
   m_Layer: 0
   m_Name: SpeedUp
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8724895469496398768
+--- !u!114 &104532040297937120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8724895469496398771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195580cac1ac53845849be44b7538b1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4be7e6c87d8fcb64a9136658c8b2743e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timer: {fileID: 0}
   _player: {fileID: 0}

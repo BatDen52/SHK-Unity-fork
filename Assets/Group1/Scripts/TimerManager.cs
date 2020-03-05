@@ -6,10 +6,9 @@ using UnityEngine.Events;
 public class TimerManager : MonoBehaviour
 {
     [SerializeField] private float _interval;
+    [SerializeField] private UnityEvent TimeEnded;
     
     private List<Timer> _timerList;
-
-    public event UnityAction EndOfTime;
 
     private void Start()
     {
@@ -23,11 +22,10 @@ public class TimerManager : MonoBehaviour
             timer.Tick(Time.deltaTime);
 
             if (timer.IsFinished)
-            {
-                EndOfTime?.Invoke();
-                _timerList.Remove(timer);
-            }
+                TimeEnded?.Invoke();
         }
+
+        _timerList.RemoveAll(t => t.IsFinished);
     }
 
     public void Add()
