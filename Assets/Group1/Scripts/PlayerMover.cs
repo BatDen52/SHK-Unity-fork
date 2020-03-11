@@ -7,7 +7,6 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _speed;
 
     private float _currentSpeed;
-    private Vector3 _direction;
 
     private void Start()
     {
@@ -20,20 +19,18 @@ public class PlayerMover : MonoBehaviour
             Move();
     }
 
-    void Move()
+    private void Move()
     {
-        _direction.x = Input.GetAxis("Horizontal");
-        _direction.y = Input.GetAxis("Vertical");
-
-        transform.Translate(_direction * Time.deltaTime * _currentSpeed);
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        transform.Translate(direction * Time.deltaTime * _currentSpeed);
     }
 
-    public void SpeedUpStart()
+    public void SpeedUp()
     {
         _currentSpeed += _speed;
     }
 
-    public void SpeedUpEnd()
+    public void SpeedDown()
     {
         _currentSpeed -= _speed;
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameOverChecker : MonoBehaviour
@@ -7,18 +8,15 @@ public class GameOverChecker : MonoBehaviour
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private PlayerMover _player;
 
-    private int _enemyCount;
-    private EnemyDeath[] _enemyList;
+    private List<EnemyDeathTrigger> _enemyList;
 
     private void OnEnable()
     {
-        _enemyList = FindObjectsOfType<EnemyDeath>();
-
-        _enemyCount = _enemyList.Length;
+        _enemyList = FindObjectsOfType<EnemyDeathTrigger>().ToList();
 
         foreach (var enemy in _enemyList)
         {
-            enemy.Deathed += OnEnemyDeathed;
+            enemy.Died += OnEnemyDeathed;
         }
     }
 
@@ -26,18 +24,18 @@ public class GameOverChecker : MonoBehaviour
     {
         foreach (var enemy in _enemyList)
         {
-            enemy.Deathed -= OnEnemyDeathed;
+            enemy.Died -= OnEnemyDeathed;
         }
     }
 
-    private void OnEnemyDeathed()
+    private void OnEnemyDeathed(EnemyDeathTrigger enemy)
     {
-        _enemyCount--;
+        _enemyList.Remove(enemy);
     }
 
     private void Update()
     {
-        if (_enemyCount == 0)
+        if (_enemyList.Count == 0)
         {
             ShowEndScreen();
             _player.enabled = false;

@@ -3,20 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUpActivator : MonoBehaviour
+public class SpeedUpActivator : PlayerDistanceChecker
 {
-    [SerializeField] private TimerManager _timer;
-    [SerializeField] private PlayerMover _player;
+    [SerializeField] private Timers _timer;
 
-    void Update()
+    private void Update()
     {
-        if (Vector3.Distance(_player.transform.position, transform.position) < 0.2f)
-        {
-            _timer.Add();
+        CheckDistance(SpeedUpPlayer);
+    }
 
-            _player.SpeedUpStart();
-
-            Destroy(gameObject);
-        }
+    private void SpeedUpPlayer()
+    {
+        _timer.Add();
+        _player.SpeedUp();
     }
 }

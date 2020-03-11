@@ -16,15 +16,15 @@ public class EnemyMover : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        Move(_targetPosition);
 
-        if (transform.position == _targetPosition)
+        if (Vector3.Distance(transform.position, _targetPosition) == 0)
             GenerateTarget();
     }
 
-    public void Move()
+    public void Move(Vector3 target)
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, _speed * Time.deltaTime);
     }
 
     private void GenerateTarget()

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TimerManager : MonoBehaviour
+public class Timers : MonoBehaviour
 {
     [SerializeField] private float _interval;
-    [SerializeField] private UnityEvent TimeEnded;
     
     private List<Timer> _timerList;
+    
+    public event UnityAction TimeEnded;
 
     private void Start()
     {

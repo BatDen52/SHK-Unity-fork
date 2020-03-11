@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyDeath : MonoBehaviour
+public abstract class PlayerDistanceChecker : MonoBehaviour
 {
-    [SerializeField] private PlayerMover _player;
+    [SerializeField] protected PlayerMover _player;
 
-    public event UnityAction Deathed;
-
-    private void Update()
+    protected void CheckDistance(UnityAction collisionHandler)
     {
         if (Vector3.Distance(_player.transform.position, transform.position) < 0.2f)
         {
+            collisionHandler?.Invoke();
             Destroy(gameObject);
-            Deathed?.Invoke();
         }
     }
 }
