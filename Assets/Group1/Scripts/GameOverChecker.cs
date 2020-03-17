@@ -16,7 +16,7 @@ public class GameOverChecker : MonoBehaviour
 
         foreach (var enemy in _enemyList)
         {
-            enemy.Died += OnEnemyDeathed;
+            enemy.Died += OnEnemyDied;
         }
     }
 
@@ -24,17 +24,14 @@ public class GameOverChecker : MonoBehaviour
     {
         foreach (var enemy in _enemyList)
         {
-            enemy.Died -= OnEnemyDeathed;
+            enemy.Died -= OnEnemyDied;
         }
     }
 
-    private void OnEnemyDeathed(EnemyDeathTrigger enemy)
+    private void OnEnemyDied(EnemyDeathTrigger enemy)
     {
         _enemyList.Remove(enemy);
-    }
 
-    private void Update()
-    {
         if (_enemyList.Count == 0)
         {
             ShowEndScreen();

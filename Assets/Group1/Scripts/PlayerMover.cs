@@ -13,7 +13,7 @@ public class PlayerMover : MonoBehaviour
         _currentSpeed = _speed;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             Move();

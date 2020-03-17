@@ -7,12 +7,14 @@ public abstract class PlayerDistanceChecker : MonoBehaviour
 {
     [SerializeField] protected PlayerMover _player;
 
-    protected void CheckDistance(UnityAction collisionHandler)
+    private void Update()
     {
         if (Vector3.Distance(_player.transform.position, transform.position) < 0.2f)
         {
-            collisionHandler?.Invoke();
+            CollisionHandle();
             Destroy(gameObject);
         }
     }
+
+    protected abstract void CollisionHandle();
 }

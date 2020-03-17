@@ -7,12 +7,7 @@ public class SpeedUpActivator : PlayerDistanceChecker
 {
     [SerializeField] private Timers _timer;
 
-    private void Update()
-    {
-        CheckDistance(SpeedUpPlayer);
-    }
-
-    private void SpeedUpPlayer()
+    protected override void CollisionHandle()
     {
         _timer.Add();
         _player.SpeedUp();

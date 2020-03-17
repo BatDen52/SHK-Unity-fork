@@ -7,12 +7,7 @@ public class EnemyDeathTrigger : PlayerDistanceChecker
 {
     public event UnityAction<EnemyDeathTrigger> Died;
 
-    private void Update()
-    {
-        CheckDistance(Die);
-    }
-
-    private void Die()
+    protected override void CollisionHandle()
     {
         Died?.Invoke(this);
     }
