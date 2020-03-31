@@ -15,17 +15,13 @@ public class GameOverChecker : MonoBehaviour
         _enemyList = FindObjectsOfType<EnemyDeathTrigger>().ToList();
 
         foreach (var enemy in _enemyList)
-        {
             enemy.Died += OnEnemyDied;
-        }
     }
 
     private void OnDisable()
     {
         foreach (var enemy in _enemyList)
-        {
             enemy.Died -= OnEnemyDied;
-        }
     }
 
     private void OnEnemyDied(EnemyDeathTrigger enemy)
@@ -34,8 +30,8 @@ public class GameOverChecker : MonoBehaviour
 
         if (_enemyList.Count == 0)
         {
-            ShowEndScreen();
             _player.enabled = false;
+            ShowEndScreen();
         }
     }
 

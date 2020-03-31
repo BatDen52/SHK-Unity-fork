@@ -15,13 +15,16 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            Move();
+        float horizontalDirection = Input.GetAxis("Horizontal");
+        float verticalDirection = Input.GetAxis("Vertical");
+
+        if (horizontalDirection != 0 || verticalDirection != 0)
+            Move(horizontalDirection, verticalDirection);
     }
 
-    private void Move()
+    private void Move(float horizontalDirection, float verticalDirection)
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector3 direction = new Vector3(horizontalDirection, verticalDirection);
         transform.Translate(direction * Time.deltaTime * _currentSpeed);
     }
 

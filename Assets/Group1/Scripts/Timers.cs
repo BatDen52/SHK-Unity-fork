@@ -5,33 +5,24 @@ using UnityEngine.Events;
 
 public class Timers : MonoBehaviour
 {
-    [SerializeField] private float _interval;
+    private List<Timer> _timers;
     
-    private List<Timer> _timerList;
-    
-    public event UnityAction TimeEnded;
-
     private void Start()
     {
-        _timerList = new List<Timer>();
+        _timers = new List<Timer>();
     }
 
-    void Update()
+    private void Update()
     {
-        foreach (Timer timer in _timerList)
-        {
+        foreach (Timer timer in _timers)
             timer.Tick(Time.deltaTime);
 
-            if (timer.IsFinished)
-                TimeEnded?.Invoke();
-        }
-
-        _timerList.RemoveAll(t => t.IsFinished);
+        _timers.RemoveAll(t => t.IsFinished);
     }
 
-    public void Add()
+    public void Add(float interval, UnityAction timeEndedHandler)
     {
-        Timer t = new Timer(_interval);
-        _timerList.Add(t);
+        Timer timer = new Timer(interval, timeEndedHandler);
+        _timers.Add(timer);
     }
 }
